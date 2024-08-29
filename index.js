@@ -4,8 +4,10 @@ const mongoose = require('mongoose');
 const productRouters = require('./routes/Products')
 const brandsRouters = require('./routes/Brands')
 const categoriesRouters = require('./routes/Category')
+const cors = require('cors')
 
 server.use(express.json()); // to parse req.body
+server.use(cors())
 server.use('/products', productRouters.router)
 server.use('/brands', brandsRouters.router)
 server.use('/categories', categoriesRouters.router)
