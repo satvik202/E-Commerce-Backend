@@ -13,8 +13,8 @@ exports.fetchAllProducts = async (req, res)=>{
     // filter = {"category":["smartphone","laptops"]}
   //  sort = { _sort: option.sort };
   // pagination = {_page : 1, _per_page : 12}
-    let query = Product.find({})
-    let totalProductsQuery = Product.find({});
+    let query = Product.find({deleted : {$ne : true}})
+    let totalProductsQuery = Product.find({deleted : {$ne : true}});
     if(req.query.category){
         query = query.find({"category" : req.query.category})
         totalProductsQuery = totalProductsQuery.find({"category" : req.query.category})
