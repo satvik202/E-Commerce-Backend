@@ -12,12 +12,12 @@ exports.createUser = async (req, res)=>{
 
 exports.loginUser = async (req, res)=>{
     try{
-        const user = await User.findOne({email : req.body.email}, 'id password email').exec()
+        const user = await User.findOne({email : req.body.email}, 'id password email role').exec()
         // console.log(user)
         if(!user){
             res.status(400).json({message : "invalid credentials"})
         }else if(user.password === req.body.password){
-            res.status(201).json({id: user.id, email:user.email})
+            res.status(201).json({id: user.id, email:user.email, role:user.role})
         }else{
             res.status(400).json({message : "invalid credentials"})
         }
